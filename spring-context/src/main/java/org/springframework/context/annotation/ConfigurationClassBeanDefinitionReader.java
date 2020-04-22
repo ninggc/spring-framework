@@ -191,7 +191,7 @@ class ConfigurationClassBeanDefinitionReader {
 
 		// Consider name and any aliases
 		List<String> names = new ArrayList<>(Arrays.asList(bean.getStringArray("name")));
-		String beanName = (!names.isEmpty() ? names.remove(0) : methodName);
+		String beanName = (!names.isEmpty() ? names.remove(0) : methodName);    // 通过@Bean注册的，会设置beanName为methodName
 
 		// Register aliases even when overridden
 		for (String alias : names) {
