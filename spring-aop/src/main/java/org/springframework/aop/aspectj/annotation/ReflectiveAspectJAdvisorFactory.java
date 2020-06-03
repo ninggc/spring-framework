@@ -150,7 +150,7 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 		final List<Method> methods = new ArrayList<>();
 		ReflectionUtils.doWithMethods(aspectClass, method -> {
 			// Exclude pointcuts
-			if (AnnotationUtils.getAnnotation(method, Pointcut.class) == null) {
+			if (AnnotationUtils.getAnnotation(method, Pointcut.class) == null) {	// 不包括Pointcut的所有方法
 				methods.add(method);
 			}
 		});
@@ -245,7 +245,7 @@ public class ReflectiveAspectJAdvisorFactory extends AbstractAspectJAdvisorFacto
 
 		AbstractAspectJAdvice springAdvice;
 
-		switch (aspectJAnnotation.getAnnotationType()) {
+		switch (aspectJAnnotation.getAnnotationType()) {	// 找到增强器
 			case AtPointcut:
 				if (logger.isDebugEnabled()) {
 					logger.debug("Processing pointcut '" + candidateAdviceMethod.getName() + "'");

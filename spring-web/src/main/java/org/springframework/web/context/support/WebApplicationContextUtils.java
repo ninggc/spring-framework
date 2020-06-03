@@ -276,7 +276,7 @@ public abstract class WebApplicationContextUtils {
 	 * Replace {@code Servlet}-based {@link StubPropertySource stub property sources} with
 	 * actual instances populated with the given {@code servletContext} and
 	 * {@code servletConfig} objects.
-	 * <p>This method is idempotent with respect to the fact it may be called any number
+	 * <p>This method is idempotent with respect to the fact it may be called any number		这个方法是幂等的
 	 * of times but will perform replacement of stub property sources with their
 	 * corresponding actual property sources once and only once.
 	 * @param sources the {@link MutablePropertySources} to initialize (must not

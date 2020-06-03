@@ -515,7 +515,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 	@Override
 	public void refresh() throws BeansException, IllegalStateException {
-		synchronized (this.startupShutdownMonitor) {
+		synchronized (this.startupShutdownMonitor) {		// 刷新或关闭同一时间只能有一个存在
 			// Prepare this context for refreshing.
 			prepareRefresh();
 
@@ -530,7 +530,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				postProcessBeanFactory(beanFactory);
 
 				// Invoke factory processors registered as beans in the context.
-				invokeBeanFactoryPostProcessors(beanFactory);
+				invokeBeanFactoryPostProcessors(beanFactory);		// 注册实现了org.springframework.beans.factory.FactoryBean接口的bean并加载
 
 				// Register bean processors that intercept bean creation.
 				registerBeanPostProcessors(beanFactory);	// 通过aop注册方法的后置处理器
@@ -545,7 +545,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				onRefresh();
 
 				// Check for listener beans and register them.
-				registerListeners();
+				registerListeners();		// 检查监听类的bean并注册他们
 
 				// Instantiate all remaining (non-lazy-init) singletons.
 				finishBeanFactoryInitialization(beanFactory);
