@@ -258,20 +258,20 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 		Connection con = null;
 
 		try {
-			if (!txObject.hasConnectionHolder() ||
+			if (!txObject.hasConnectionHolder() ||		// 如果事务还没有ch -- 或者ch在事务同步状态，
 					txObject.getConnectionHolder().isSynchronizedWithTransaction()) {
-				Connection newCon = obtainDataSource().getConnection();
+				Connection newCon = obtainDataSource().getConnection();		// 重置新的conn
 				if (logger.isDebugEnabled()) {
 					logger.debug("Acquired Connection [" + newCon + "] for JDBC transaction");
 				}
 				txObject.setConnectionHolder(new ConnectionHolder(newCon), true);
 			}
 
-			txObject.getConnectionHolder().setSynchronizedWithTransaction(true);
+			txObject.getConnectionHolder().setSynchronizedWithTransaction(true);		// 设置为事务同步中
 			con = txObject.getConnectionHolder().getConnection();
 
 			Integer previousIsolationLevel = DataSourceUtils.prepareConnectionForTransaction(con, definition);
-			txObject.setPreviousIsolationLevel(previousIsolationLevel);
+			txObject.setPreviousIsolationLevel(previousIsolationLevel);		// conn设置隔离级别为只读
 
 			// Switch to manual commit if necessary. This is very expensive in some JDBC drivers,
 			// so we don't want to do it unnecessarily (for example if we've explicitly

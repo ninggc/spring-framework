@@ -166,7 +166,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 	@Nullable
 	protected Object lookupHandler(String urlPath, HttpServletRequest request) throws Exception {
 		// Direct match?
-		Object handler = this.handlerMap.get(urlPath);
+		Object handler = this.handlerMap.get(urlPath);		// 精确匹配
 		if (handler != null) {
 			// Bean name or resolved handler?
 			if (handler instanceof String) {
@@ -183,7 +183,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 			if (getPathMatcher().match(registeredPattern, urlPath)) {
 				matchingPatterns.add(registeredPattern);
 			}
-			else if (useTrailingSlashMatch()) {
+			else if (useTrailingSlashMatch()) {		// 自动在后面加上 / 并进行Pattern match
 				if (!registeredPattern.endsWith("/") && getPathMatcher().match(registeredPattern + "/", urlPath)) {
 					matchingPatterns.add(registeredPattern + "/");
 				}
@@ -193,7 +193,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 		String bestMatch = null;
 		Comparator<String> patternComparator = getPathMatcher().getPatternComparator(urlPath);
 		if (!matchingPatterns.isEmpty()) {
-			matchingPatterns.sort(patternComparator);
+			matchingPatterns.sort(patternComparator);		// 很据匹配模式进行排序，找到最匹配的
 			if (logger.isDebugEnabled()) {
 				logger.debug("Matching patterns for request [" + urlPath + "] are " + matchingPatterns);
 			}
@@ -219,7 +219,7 @@ public abstract class AbstractUrlHandlerMapping extends AbstractHandlerMapping i
 			String pathWithinMapping = getPathMatcher().extractPathWithinPattern(bestMatch, urlPath);
 
 			// There might be multiple 'best patterns', let's make sure we have the correct URI template variables
-			// for all of them
+			// for all of them		// question 这里为什么会有多个，没看明白
 			Map<String, String> uriTemplateVariables = new LinkedHashMap<>();
 			for (String matchingPattern : matchingPatterns) {
 				if (patternComparator.compare(bestMatch, matchingPattern) == 0) {

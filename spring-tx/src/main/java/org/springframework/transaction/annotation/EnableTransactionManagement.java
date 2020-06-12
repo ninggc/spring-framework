@@ -167,6 +167,8 @@ public @interface EnableTransactionManagement {
 	 * {@code @Async} annotation will be upgraded to subclass proxying at the same
 	 * time. This approach has no negative impact in practice unless one is explicitly
 	 * expecting one type of proxy vs another, e.g. in tests.
+	 * true 使用CGLIB动态代理 字类继承代理
+	 * false 使用jdk动态代理 面向接口代理
 	 */
 	boolean proxyTargetClass() default false;
 
@@ -179,6 +181,8 @@ public @interface EnableTransactionManagement {
 	 * ignored since Spring's interceptor does not even kick in for such a runtime
 	 * scenario. For a more advanced mode of interception, consider switching this to
 	 * {@link AdviceMode#ASPECTJ}.
+	 * 事务通知模式 默认使用代理模式，同一个类的方法互相调用拦截器不会生效
+	 * 可以选择增强型ASPECTJ
 	 */
 	AdviceMode mode() default AdviceMode.PROXY;
 
@@ -186,6 +190,7 @@ public @interface EnableTransactionManagement {
 	 * Indicate the ordering of the execution of the transaction advisor
 	 * when multiple advices are applied at a specific joinpoint.
 	 * <p>The default is {@link Ordered#LOWEST_PRECEDENCE}.
+	 * 值越大优先级越低
 	 */
 	int order() default Ordered.LOWEST_PRECEDENCE;
 
