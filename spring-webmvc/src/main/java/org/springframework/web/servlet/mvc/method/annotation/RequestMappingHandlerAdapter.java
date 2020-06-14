@@ -565,17 +565,17 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 	@Override
 	public void afterPropertiesSet() {
 		// Do this first, it may add ResponseBody advice beans
-		initControllerAdviceCache();
+		initControllerAdviceCache();		// 1. 初始化ControllerAdvice注解的对象
 
-		if (this.argumentResolvers == null) {
+		if (this.argumentResolvers == null) {		// 2. 装载ArgumentResolver
 			List<HandlerMethodArgumentResolver> resolvers = getDefaultArgumentResolvers();
 			this.argumentResolvers = new HandlerMethodArgumentResolverComposite().addResolvers(resolvers);
 		}
-		if (this.initBinderArgumentResolvers == null) {
+		if (this.initBinderArgumentResolvers == null) {		// 3. 装载InitBinderArgumentResolvers
 			List<HandlerMethodArgumentResolver> resolvers = getDefaultInitBinderArgumentResolvers();
 			this.initBinderArgumentResolvers = new HandlerMethodArgumentResolverComposite().addResolvers(resolvers);
 		}
-		if (this.returnValueHandlers == null) {
+		if (this.returnValueHandlers == null) {		// 4. 装载ResutnValueHandlers
 			List<HandlerMethodReturnValueHandler> handlers = getDefaultReturnValueHandlers();
 			this.returnValueHandlers = new HandlerMethodReturnValueHandlerComposite().addHandlers(handlers);
 		}
@@ -854,8 +854,8 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 
 		ServletWebRequest webRequest = new ServletWebRequest(request, response);
 		try {
-			WebDataBinderFactory binderFactory = getDataBinderFactory(handlerMethod);
-			ModelFactory modelFactory = getModelFactory(handlerMethod, binderFactory);
+			WebDataBinderFactory binderFactory = getDataBinderFactory(handlerMethod);		// 使用initBindAdviceCache对@InitBinder进行处理
+			ModelFactory modelFactory = getModelFactory(handlerMethod, binderFactory);		// 使用modelAttributeAdviceCache对@ModelAttribute进行处理
 
 			ServletInvocableHandlerMethod invocableMethod = createInvocableHandlerMethod(handlerMethod);
 			if (this.argumentResolvers != null) {

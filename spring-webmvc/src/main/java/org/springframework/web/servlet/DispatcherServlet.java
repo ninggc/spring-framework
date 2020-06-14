@@ -979,7 +979,7 @@ public class DispatcherServlet extends FrameworkServlet {
 						logger.debug("Last-Modified value for [" + getRequestUri(request) + "] is: " + lastModified);
 					}
 					if (new ServletWebRequest(request, response).checkNotModified(lastModified) && isGet) {
-						return;
+						return;		// 如果小于浏览器缓存更新时间，直接返回（浏览器使用本地缓存）
 					}
 				}
 
