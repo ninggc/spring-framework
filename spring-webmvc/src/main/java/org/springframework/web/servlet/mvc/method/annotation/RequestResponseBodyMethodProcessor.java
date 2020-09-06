@@ -136,7 +136,7 @@ public class RequestResponseBodyMethodProcessor extends AbstractMessageConverter
 				validateIfApplicable(binder, parameter);
 				if (binder.getBindingResult().hasErrors() && isBindExceptionRequired(binder, parameter)) {
 					throw new MethodArgumentNotValidException(parameter, binder.getBindingResult());
-				}
+				}		// 如果参数校验异常，且目标参数列表中没有BindingResult类型参数，就直接抛出参数解析异常
 			}
 			if (mavContainer != null) {
 				mavContainer.addAttribute(BindingResult.MODEL_KEY_PREFIX + name, binder.getBindingResult());

@@ -274,7 +274,7 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 		}
 
 		List<ControllerAdviceBean> adviceBeans = ControllerAdviceBean.findAnnotatedBeans(getApplicationContext());
-		AnnotationAwareOrderComparator.sort(adviceBeans);
+		AnnotationAwareOrderComparator.sort(adviceBeans);		// 进行排序
 
 		for (ControllerAdviceBean adviceBean : adviceBeans) {
 			Class<?> beanType = adviceBean.getBeanType();
@@ -282,13 +282,13 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 				throw new IllegalStateException("Unresolvable type for ControllerAdviceBean: " + adviceBean);
 			}
 			ExceptionHandlerMethodResolver resolver = new ExceptionHandlerMethodResolver(beanType);
-			if (resolver.hasExceptionMappings()) {
+			if (resolver.hasExceptionMappings()) {		// 带有@ExceptionHandler注解的方法
 				this.exceptionHandlerAdviceCache.put(adviceBean, resolver);
 				if (logger.isInfoEnabled()) {
 					logger.info("Detected @ExceptionHandler methods in " + adviceBean);
 				}
 			}
-			if (ResponseBodyAdvice.class.isAssignableFrom(beanType)) {
+			if (ResponseBodyAdvice.class.isAssignableFrom(beanType)) {		// 如果该类实现了ResponseBodyAdvice接口
 				this.responseBodyAdvice.add(adviceBean);
 				if (logger.isInfoEnabled()) {
 					logger.info("Detected ResponseBodyAdvice implementation in " + adviceBean);
@@ -455,7 +455,7 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 			handlerType = handlerMethod.getBeanType();
 			ExceptionHandlerMethodResolver resolver = this.exceptionHandlerCache.get(handlerType);
 			if (resolver == null) {
-				resolver = new ExceptionHandlerMethodResolver(handlerType);
+				resolver = new ExceptionHandlerMethodResolver(handlerType);		// require method with ExceptionHandler
 				this.exceptionHandlerCache.put(handlerType, resolver);
 			}
 			Method method = resolver.resolveMethod(exception);

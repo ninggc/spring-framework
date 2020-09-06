@@ -984,7 +984,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				}
 
 				if (!mappedHandler.applyPreHandle(processedRequest, response)) {
-					return;
+					return;		// 如果是异步请求，直接返回
 				}
 
 				// Actually invoke the handler.
@@ -1005,7 +1005,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				// making them available for @ExceptionHandler methods and other scenarios.
 				dispatchException = new NestedServletException("Handler dispatch failed", err);
 			}
-			processDispatchResult(processedRequest, response, mappedHandler, mv, dispatchException);
+			processDispatchResult(processedRequest, response, mappedHandler, mv, dispatchException);		// 4. 异常处理，视图解析，渲染返回
 		}
 		catch (Exception ex) {
 			triggerAfterCompletion(processedRequest, response, mappedHandler, ex);
@@ -1052,23 +1052,23 @@ public class DispatcherServlet extends FrameworkServlet {
 
 		boolean errorView = false;
 
-		if (exception != null) {
-			if (exception instanceof ModelAndViewDefiningException) {
+		if (exception != null) {		// 异常处理
+			if (exception instanceof ModelAndViewDefiningException) {		// 处理过的异常
 				logger.debug("ModelAndViewDefiningException encountered", exception);
 				mv = ((ModelAndViewDefiningException) exception).getModelAndView();
 			}
 			else {
 				Object handler = (mappedHandler != null ? mappedHandler.getHandler() : null);
-				mv = processHandlerException(request, response, handler, exception);
-				errorView = (mv != null);
+				mv = processHandlerException(request, response, handler, exception);		// // exception is not has been processed
+				errorView = (mv != null);		// // if the exception is been processed by exceptionResolver
 			}
 		}
 
 		// Did the handler return a view to render?
-		if (mv != null && !mv.wasCleared()) {
+		if (mv != null && !mv.wasCleared()) {		// 视图解析，渲染返回
 			render(mv, request, response);
 			if (errorView) {
-				WebUtils.clearErrorRequestAttributes(request);
+				WebUtils.clearErrorRequestAttributes(request);		// obtain a error view already, clear error info in request
 			}
 		}
 		else {
@@ -1252,9 +1252,9 @@ public class DispatcherServlet extends FrameworkServlet {
 		ModelAndView exMv = null;
 		if (this.handlerExceptionResolvers != null) {
 			for (HandlerExceptionResolver handlerExceptionResolver : this.handlerExceptionResolvers) {
-				exMv = handlerExceptionResolver.resolveException(request, response, handler, ex);
+				exMv = handlerExceptionResolver.resolveException(request, response, handler, ex);		// 使用异常解析器解析异常
 				if (exMv != null) {
-					break;
+					break;		// // already handle the exception
 				}
 			}
 		}
@@ -1277,7 +1277,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			return exMv;
 		}
 
-		throw ex;
+		throw ex;		// // not handle the exception
 	}
 
 	/**
@@ -1291,7 +1291,7 @@ public class DispatcherServlet extends FrameworkServlet {
 	 */
 	protected void render(ModelAndView mv, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// Determine locale for request and apply it to the response.
-		Locale locale =
+		Locale locale =		// 国际化
 				(this.localeResolver != null ? this.localeResolver.resolveLocale(request) : request.getLocale());
 		response.setLocale(locale);
 
@@ -1299,7 +1299,7 @@ public class DispatcherServlet extends FrameworkServlet {
 		String viewName = mv.getViewName();
 		if (viewName != null) {
 			// We need to resolve the view name.
-			view = resolveViewName(viewName, mv.getModelInternal(), locale, request);
+			view = resolveViewName(viewName, mv.getModelInternal(), locale, request);		// 视图解析
 			if (view == null) {
 				throw new ServletException("Could not resolve view with name '" + mv.getViewName() +
 						"' in servlet with name '" + getServletName() + "'");
