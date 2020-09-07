@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.web.servlet.handler.AbstractHandlerMapping</OriginalElement>
+  <nodes>
+    <node x="274.0" y="81.0">org.springframework.web.context.ServletContextAware</node>
+    <node x="0.0" y="243.0">org.springframework.core.Ordered</node>
+    <node x="123.99999999999994" y="243.0">org.springframework.web.context.support.WebApplicationObjectSupport</node>
+    <node x="165.24999999999997" y="486.0">org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping</node>
+    <node x="425.2407407407407" y="243.0">org.springframework.web.servlet.HandlerMapping</node>
+    <node x="165.24999999999997" y="405.0">org.springframework.web.servlet.handler.AbstractUrlHandlerMapping</node>
+    <node x="433.25" y="405.0">org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping</node>
+    <node x="311.2685185185185" y="0.0">org.springframework.beans.factory.Aware</node>
+    <node x="18.0" y="162.0">org.springframework.context.support.ApplicationObjectSupport</node>
+    <node x="108.02777777777771" y="324.0">org.springframework.web.servlet.handler.AbstractHandlerMapping</node>
+    <node x="22.0" y="81.0">org.springframework.context.ApplicationContextAware</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" target="org.springframework.web.servlet.HandlerMapping">
+      <point x="0.0" y="-15.5" />
+      <point x="569.25" y="299.0" />
+      <point x="558.5740740740741" y="299.0" />
+      <point x="53.33333333333337" y="15.5" />
+    </edge>
+    <edge source="org.springframework.context.ApplicationContextAware" target="org.springframework.beans.factory.Aware">
+      <point x="0.0" y="-15.5" />
+      <point x="138.0" y="56.0" />
+      <point x="325.9351851851851" y="56.0" />
+      <point x="-29.333333333333314" y="15.5" />
+    </edge>
+    <edge source="org.springframework.web.servlet.handler.AbstractUrlHandlerMapping" target="org.springframework.web.servlet.handler.AbstractHandlerMapping">
+      <point x="-62.0" y="-15.5" />
+      <point x="227.24999999999997" y="385.0" />
+      <point x="164.02777777777771" y="385.0" />
+      <point x="-56.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.web.servlet.handler.AbstractHandlerMapping" target="org.springframework.core.Ordered">
+      <point x="-74.66666666666669" y="-15.5" />
+      <point x="145.36111111111103" y="299.0" />
+      <point x="52.0" y="299.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" target="org.springframework.web.servlet.handler.AbstractUrlHandlerMapping">
+      <point x="0.0" y="-15.5" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.web.servlet.handler.AbstractHandlerMapping" target="org.springframework.web.context.support.WebApplicationObjectSupport">
+      <point x="0.0" y="-15.5" />
+      <point x="220.02777777777771" y="299.0" />
+      <point x="255.99999999999994" y="299.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.web.context.support.WebApplicationObjectSupport" target="org.springframework.web.context.ServletContextAware">
+      <point x="66.0" y="-15.5" />
+      <point x="321.99999999999994" y="218.0" />
+      <point x="374.0" y="218.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.web.servlet.handler.AbstractHandlerMapping" target="org.springframework.web.servlet.HandlerMapping">
+      <point x="74.66666666666663" y="-15.5" />
+      <point x="294.69444444444434" y="299.0" />
+      <point x="451.9074074074074" y="299.0" />
+      <point x="-53.33333333333334" y="15.5" />
+    </edge>
+    <edge source="org.springframework.web.context.support.WebApplicationObjectSupport" target="org.springframework.context.support.ApplicationObjectSupport">
+      <point x="-66.0" y="-15.5" />
+      <point x="189.99999999999994" y="218.0" />
+      <point x="138.0" y="218.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.web.context.ServletContextAware" target="org.springframework.beans.factory.Aware">
+      <point x="0.0" y="-15.5" />
+      <point x="374.0" y="56.0" />
+      <point x="355.2685185185185" y="56.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.context.support.ApplicationObjectSupport" target="org.springframework.context.ApplicationContextAware">
+      <point x="0.0" y="-15.5" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" target="org.springframework.beans.factory.Aware">
+      <point x="90.66666666666671" y="-15.5" />
+      <point x="659.9166666666667" y="385.0" />
+      <point x="613.5092592592592" y="385.0" />
+      <point x="613.5092592592592" y="56.0" />
+      <point x="384.60185185185173" y="56.0" />
+      <point x="29.333333333333314" y="15.5" />
+    </edge>
+    <edge source="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" target="org.springframework.web.servlet.handler.AbstractHandlerMapping">
+      <point x="-90.66666666666669" y="-15.5" />
+      <point x="478.58333333333326" y="375.0" />
+      <point x="276.0277777777777" y="375.0" />
+      <point x="56.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.web.servlet.handler.AbstractUrlHandlerMapping" target="org.springframework.web.servlet.HandlerMapping">
+      <point x="62.0" y="-15.5" />
+      <point x="351.25" y="385.0" />
+      <point x="461.8425925925925" y="385.0" />
+      <point x="461.8425925925925" y="299.0" />
+      <point x="505.2407407407407" y="299.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="284.0" y="215.5" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

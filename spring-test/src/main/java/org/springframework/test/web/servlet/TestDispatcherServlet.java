@@ -119,7 +119,7 @@ final class TestDispatcherServlet extends DispatcherServlet {
 	protected HandlerExecutionChain getHandler(HttpServletRequest request) throws Exception {
 		HandlerExecutionChain chain = super.getHandler(request);
 		if (chain != null) {
-			DefaultMvcResult mvcResult = getMvcResult(request);
+			DefaultMvcResult mvcResult = getMvcResult(request);		// 设置request中的属性mvcResult的handler和interceptors
 			mvcResult.setHandler(chain.getHandler());
 			mvcResult.setInterceptors(chain.getInterceptors());
 		}
