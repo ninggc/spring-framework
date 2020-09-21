@@ -18,6 +18,7 @@ package org.springframework.context.support;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.lang.Nullable;
@@ -138,7 +139,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 			String[] configLocations, boolean refresh, @Nullable ApplicationContext parent)
 			throws BeansException {
 
-		super(parent);
+		super(parent);		// 只在AbstractApplicationContext处设置了setParent
 		setConfigLocations(configLocations);
 		if (refresh) {
 			refresh();
@@ -209,4 +210,8 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 		return this.configResources;
 	}
 
+	public static void main(String[] args) {
+		new ClassPathXmlApplicationContext("classpath://applicationContext.xml");
+		new AnnotationConfigApplicationContext("com.demo.project");
+	}
 }
