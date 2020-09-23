@@ -94,7 +94,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * @param basePackages the packages to check for annotated classes
 	 */
 	public AnnotationConfigApplicationContext(String... basePackages) {
-		this();
+		this();		// 注册anno bean reader和
 		scan(basePackages);
 		refresh();
 	}
