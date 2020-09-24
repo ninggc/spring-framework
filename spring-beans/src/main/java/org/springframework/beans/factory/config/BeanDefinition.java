@@ -163,6 +163,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * It does not affect explicit references by name, which will get resolved even
 	 * if the specified bean is not marked as an autowire candidate. As a consequence,
 	 * autowiring by name will nevertheless inject a bean if the name matches.
+	 * 设置该bean是否可以注入到其他bean，仅对ByType有效，ByName无视此选项
 	 */
 	void setAutowireCandidate(boolean autowireCandidate);
 
@@ -175,6 +176,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * Set whether this bean is a primary autowire candidate.
 	 * <p>If this value is {@code true} for exactly one bean among multiple
 	 * matching candidates, it will serve as a tie-breaker.
+	 * 对于多个candidate该bean是否优先被选择
 	 */
 	void setPrimary(boolean primary);
 
@@ -187,6 +189,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * Specify the factory bean to use, if any.
 	 * This the name of the bean to call the specified factory method on.
 	 * @see #setFactoryMethodName
+	 * FactoryBean生成的bean，指定facName
 	 */
 	void setFactoryBeanName(@Nullable String factoryBeanName);
 
@@ -262,6 +265,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 
 	/**
 	 * Return whether this bean is "abstract", that is, not meant to be instantiated.
+	 * bean是否被设置位abstract？如果是，该bean不能被初始化
 	 */
 	boolean isAbstract();
 

@@ -412,7 +412,7 @@ public class BeanDefinitionParserDelegate {
 	 */
 	@Nullable
 	public BeanDefinitionHolder parseBeanDefinitionElement(Element ele, @Nullable BeanDefinition containingBean) {
-		String id = ele.getAttribute(ID_ATTRIBUTE);
+		String id = ele.getAttribute(ID_ATTRIBUTE);		// parseBeanDefinitionElement方法是具体的对与<bean>标签的解析
 		String nameAttr = ele.getAttribute(NAME_ATTRIBUTE);
 
 		List<String> aliases = new ArrayList<>();
@@ -434,8 +434,8 @@ public class BeanDefinitionParserDelegate {
 			checkNameUniqueness(beanName, aliases, ele);
 		}
 
-		AbstractBeanDefinition beanDefinition = parseBeanDefinitionElement(ele, beanName, containingBean);
-		if (beanDefinition != null) {
+		AbstractBeanDefinition beanDefinition = parseBeanDefinitionElement(ele, beanName, containingBean);		// 生成BD实例
+		if (beanDefinition != null) {		// 到这里<bean>标签就已经解析结束了
 			if (!StringUtils.hasText(beanName)) {
 				try {
 					if (containingBean != null) {
@@ -512,12 +512,12 @@ public class BeanDefinitionParserDelegate {
 		}
 
 		try {
-			AbstractBeanDefinition bd = createBeanDefinition(className, parent);
+			AbstractBeanDefinition bd = createBeanDefinition(className, parent);		// 设置bean的类信息
 
 			parseBeanDefinitionAttributes(ele, beanName, containingBean, bd);
 			bd.setDescription(DomUtils.getChildElementValueByTagName(ele, DESCRIPTION_ELEMENT));
 
-			parseMetaElements(ele, bd);
+			parseMetaElements(ele, bd);		// 以下是对bean内的各个标签的解析
 			parseLookupOverrideSubElements(ele, bd.getMethodOverrides());
 			parseReplacedMethodSubElements(ele, bd.getMethodOverrides());
 

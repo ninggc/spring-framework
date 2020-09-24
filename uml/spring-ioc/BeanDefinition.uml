@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="204.0" y="0.0">org.springframework.beans.BeanMetadataElement</node>
+    <node x="0.0" y="0.0">org.springframework.core.AttributeAccessor</node>
+    <node x="116.0" y="80.0">org.springframework.beans.factory.config.BeanDefinition</node>
+    <node x="84.0" y="160.0">org.springframework.beans.factory.support.AbstractBeanDefinition</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.beans.factory.support.AbstractBeanDefinition" target="org.springframework.beans.factory.config.BeanDefinition">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.support.AbstractBeanDefinition" target="org.springframework.core.AttributeAccessor">
+      <point x="-74.66666666666669" y="-15.0" />
+      <point x="121.33333333333331" y="135.0" />
+      <point x="66.08333333333334" y="135.0" />
+      <point x="66.08333333333334" y="55.0" />
+      <point x="46.0" y="55.0" />
+      <point x="-46.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.BeanDefinition" target="org.springframework.core.AttributeAccessor">
+      <point x="-40.0" y="-15.0" />
+      <point x="156.0" y="55.0" />
+      <point x="138.0" y="55.0" />
+      <point x="46.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.support.AbstractBeanDefinition" target="org.springframework.beans.BeanMetadataElement">
+      <point x="74.66666666666669" y="-15.0" />
+      <point x="270.6666666666667" y="135.0" />
+      <point x="328.58333333333337" y="135.0" />
+      <point x="328.58333333333337" y="55.0" />
+      <point x="354.0" y="55.0" />
+      <point x="50.0" y="15.0" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.BeanDefinition" target="org.springframework.beans.BeanMetadataElement">
+      <point x="40.0" y="-15.0" />
+      <point x="236.0" y="55.0" />
+      <point x="254.0" y="55.0" />
+      <point x="-50.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="305.0" y="55.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

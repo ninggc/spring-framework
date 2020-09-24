@@ -317,7 +317,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 			logger.info("Loading XML bean definitions from " + encodedResource);
 		}
 
-		Set<EncodedResource> currentResources = this.resourcesCurrentlyBeingLoaded.get();
+		Set<EncodedResource> currentResources = this.resourcesCurrentlyBeingLoaded.get();		// 存放配置文件资源的ThreadLocal
 		if (currentResources == null) {
 			currentResources = new HashSet<>(4);
 			this.resourcesCurrentlyBeingLoaded.set(currentResources);
@@ -333,7 +333,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 				if (encodedResource.getEncoding() != null) {
 					inputSource.setEncoding(encodedResource.getEncoding());
 				}
-				return doLoadBeanDefinitions(inputSource, encodedResource.getResource());
+				return doLoadBeanDefinitions(inputSource, encodedResource.getResource());		// 核心部分，加载BD
 			}
 			finally {
 				inputStream.close();
@@ -505,7 +505,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	public int registerBeanDefinitions(Document doc, Resource resource) throws BeanDefinitionStoreException {
 		BeanDefinitionDocumentReader documentReader = createBeanDefinitionDocumentReader();
 		int countBefore = getRegistry().getBeanDefinitionCount();
-		documentReader.registerBeanDefinitions(doc, createReaderContext(resource));
+		documentReader.registerBeanDefinitions(doc, createReaderContext(resource));		// 注册BD
 		return getRegistry().getBeanDefinitionCount() - countBefore;
 	}
 
