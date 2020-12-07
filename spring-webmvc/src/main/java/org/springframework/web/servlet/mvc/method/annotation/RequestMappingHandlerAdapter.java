@@ -575,7 +575,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 			List<HandlerMethodArgumentResolver> resolvers = getDefaultInitBinderArgumentResolvers();
 			this.initBinderArgumentResolvers = new HandlerMethodArgumentResolverComposite().addResolvers(resolvers);
 		}
-		if (this.returnValueHandlers == null) {		// 4. 装载ResutnValueHandlers
+		if (this.returnValueHandlers == null) {		// 4. 装载ReturnValueHandlers
 			List<HandlerMethodReturnValueHandler> handlers = getDefaultReturnValueHandlers();
 			this.returnValueHandlers = new HandlerMethodReturnValueHandlerComposite().addHandlers(handlers);
 		}
@@ -600,22 +600,22 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 				throw new IllegalStateException("Unresolvable type for ControllerAdviceBean: " + adviceBean);
 			}
 			Set<Method> attrMethods = MethodIntrospector.selectMethods(beanType, MODEL_ATTRIBUTE_METHODS);
-			if (!attrMethods.isEmpty()) {
+			if (!attrMethods.isEmpty()) {		// 注有ModelAttribute的方法
 				this.modelAttributeAdviceCache.put(adviceBean, attrMethods);
 				if (logger.isInfoEnabled()) {
 					logger.info("Detected @ModelAttribute methods in " + adviceBean);
 				}
 			}
 			Set<Method> binderMethods = MethodIntrospector.selectMethods(beanType, INIT_BINDER_METHODS);
-			if (!binderMethods.isEmpty()) {
+			if (!binderMethods.isEmpty()) {		// 注有InitBinder的方法
 				this.initBinderAdviceCache.put(adviceBean, binderMethods);
 				if (logger.isInfoEnabled()) {
 					logger.info("Detected @InitBinder methods in " + adviceBean);
 				}
 			}
 
-			boolean isRequestBodyAdvice = RequestBodyAdvice.class.isAssignableFrom(beanType);
-			boolean isResponseBodyAdvice = ResponseBodyAdvice.class.isAssignableFrom(beanType);
+			boolean isRequestBodyAdvice = RequestBodyAdvice.class.isAssignableFrom(beanType);		// RequestBodyAdvice的子类
+			boolean isResponseBodyAdvice = ResponseBodyAdvice.class.isAssignableFrom(beanType);		// ResponseBodyAdvice的子类
 			if (isRequestBodyAdvice || isResponseBodyAdvice) {
 				requestResponseBodyAdviceBeans.add(adviceBean);
 				if (logger.isInfoEnabled()) {

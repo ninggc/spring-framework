@@ -5,7 +5,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class Main {
 	public static void main(String[] args) {
-		AnnotationConfigApplicationContext configApplicationContext = new AnnotationConfigApplicationContext(MainConfig.class);
+		AnnotationConfigApplicationContext configApplicationContext = new AnnotationConfigApplicationContext("com.ninggc");
 		BeanFactory beanFactory;
 	}
 }

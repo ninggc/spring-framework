@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.context.event.ApplicationEventMulticaster</OriginalElement>
+  <nodes>
+    <node x="0.0" y="400.0">org.springframework.context.event.GenericApplicationListener</node>
+    <node x="413.5" y="400.0">org.springframework.context.support.AbstractApplicationContext</node>
+    <node x="42.5" y="481.0">org.springframework.context.event.GenericApplicationListenerAdapter</node>
+    <node x="418.0" y="319.0">org.springframework.context.ApplicationEventPublisher</node>
+    <node x="8.0" y="162.0">org.springframework.context.event.SimpleApplicationEventMulticaster</node>
+    <node x="101.5" y="319.0">org.springframework.context.ApplicationListener</node>
+    <node x="16.5" y="243.0">org.springframework.context.support.StaticApplicationContextMulticasterTests.TestApplicationEventMulticaster</node>
+    <node x="0.0" y="81.0">org.springframework.context.event.AbstractApplicationEventMulticaster</node>
+    <node x="33.5" y="0.0">org.springframework.context.event.ApplicationEventMulticaster</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.context.event.SimpleApplicationEventMulticaster" target="org.springframework.context.event.AbstractApplicationEventMulticaster">
+      <point x="0.0" y="-15.5" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.context.event.GenericApplicationListener" target="org.springframework.context.ApplicationListener">
+      <point x="0.0" y="-15.5" />
+      <point x="133.5" y="375.0" />
+      <point x="153.5" y="375.0" />
+      <point x="-52.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.context.support.AbstractApplicationContext" target="org.springframework.context.ApplicationEventPublisher">
+      <point x="0.0" y="-15.5" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.context.event.GenericApplicationListenerAdapter" target="org.springframework.context.ApplicationListener">
+      <point x="81.5" y="-15.5" />
+      <point x="287.0" y="456.0" />
+      <point x="277.5" y="456.0" />
+      <point x="277.5" y="375.0" />
+      <point x="257.5" y="375.0" />
+      <point x="52.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.context.support.StaticApplicationContextMulticasterTests.TestApplicationEventMulticaster" target="org.springframework.context.event.SimpleApplicationEventMulticaster">
+      <point x="0.0" y="-15.5" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.context.event.GenericApplicationListenerAdapter" target="org.springframework.context.event.GenericApplicationListener">
+      <point x="-81.5" y="-15.5" />
+      <point x="124.0" y="456.0" />
+      <point x="133.5" y="456.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.context.event.AbstractApplicationEventMulticaster" target="org.springframework.context.event.ApplicationEventMulticaster">
+      <point x="0.0" y="-15.5" />
+      <point x="0.0" y="15.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="171.0" y="344.0" />
+  <SelectedNodes>
+    <node>org.springframework.context.ApplicationEventPublisher</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

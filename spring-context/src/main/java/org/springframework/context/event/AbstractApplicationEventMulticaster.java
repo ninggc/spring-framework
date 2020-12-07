@@ -211,6 +211,10 @@ public abstract class AbstractApplicationEventMulticaster
 	 * @param retriever the ListenerRetriever, if supposed to populate one (for caching purposes)
 	 * @return the pre-filtered list of application listeners for the given event and source type
 	 */
+	// 遍历所有listener(单例Bean)和listenerBean(非单例Bean)
+	// 通过supportsEvent方法找到所有支持该事件类型的监听器
+	// 因为缓存存在, 每个事件类型只会找一次listener
+	// 所以不同的retriever内的单例bean是同一个, 非单例bean每一个都各不相同
 	private Collection<ApplicationListener<?>> retrieveApplicationListeners(
 			ResolvableType eventType, @Nullable Class<?> sourceType, @Nullable ListenerRetriever retriever) {
 
@@ -218,6 +222,7 @@ public abstract class AbstractApplicationEventMulticaster
 		Set<ApplicationListener<?>> listeners;
 		Set<String> listenerBeans;
 		synchronized (this.retrievalMutex) {
+			// listeners存放单例Bean, listenerBeans存放非单例的Bean的beanName
 			listeners = new LinkedHashSet<>(this.defaultRetriever.applicationListeners);
 			listenerBeans = new LinkedHashSet<>(this.defaultRetriever.applicationListenerBeans);
 		}
@@ -237,6 +242,7 @@ public abstract class AbstractApplicationEventMulticaster
 					if (listenerType == null || supportsEvent(listenerType, eventType)) {
 						ApplicationListener<?> listener =
 								beanFactory.getBean(listenerBeanName, ApplicationListener.class);
+						// supportsEvent()判断listener是否支持该事件类型
 						if (!allListeners.contains(listener) && supportsEvent(listener, eventType, sourceType)) {
 							if (retriever != null) {
 								if (beanFactory.isSingleton(listenerBeanName)) {
@@ -258,6 +264,7 @@ public abstract class AbstractApplicationEventMulticaster
 		}
 		AnnotationAwareOrderComparator.sort(allListeners);
 		if (retriever != null && retriever.applicationListenerBeans.isEmpty()) {
+			// 这里
 			retriever.applicationListeners.clear();
 			retriever.applicationListeners.addAll(allListeners);
 		}
@@ -301,6 +308,7 @@ public abstract class AbstractApplicationEventMulticaster
 
 		GenericApplicationListener smartListener = (listener instanceof GenericApplicationListener ?
 				(GenericApplicationListener) listener : new GenericApplicationListenerAdapter(listener));
+		// 判断listener是否支持该事件
 		return (smartListener.supportsEventType(eventType) && smartListener.supportsSourceType(sourceType));
 	}
 

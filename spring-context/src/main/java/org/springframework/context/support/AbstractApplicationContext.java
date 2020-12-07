@@ -390,6 +390,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			applicationEvent = (ApplicationEvent) event;
 		}
 		else {
+			// 如果不是Spring支持的event, 就包装成Spring支持的event再处理
 			applicationEvent = new PayloadApplicationEvent<>(this, event);
 			if (eventType == null) {
 				eventType = ((PayloadApplicationEvent<?>) applicationEvent).getResolvableType();
@@ -397,15 +398,18 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		}
 
 		// Multicast right now if possible - or lazily once the multicaster is initialized
+		// 在应用启动的早起， 事件机制还未完全启动，先将事件暂存下来
 		if (this.earlyApplicationEvents != null) {
 			this.earlyApplicationEvents.add(applicationEvent);
 		}
 		else {
+			// 发布事件
 			getApplicationEventMulticaster().multicastEvent(applicationEvent, eventType);
 		}
 
 		// Publish event via parent context as well...
 		if (this.parent != null) {
+			// 在parent context中也发布该事件
 			if (this.parent instanceof AbstractApplicationContext) {
 				((AbstractApplicationContext) this.parent).publishEvent(event, eventType);
 			}
@@ -530,13 +534,13 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				postProcessBeanFactory(beanFactory);
 
 				// Invoke factory processors registered as beans in the context.
-				invokeBeanFactoryPostProcessors(beanFactory);		// 注册实现了org.springframework.beans.factory.FactoryBean接口的bean并加载
+				invokeBeanFactoryPostProcessors(beanFactory);		// 注册BeanFactoryPostProcessor并回调
 
 				// Register bean processors that intercept bean creation.
-				registerBeanPostProcessors(beanFactory);	// 通过aop注册方法的后置处理器
+				registerBeanPostProcessors(beanFactory);	// 注册BeanPostProcessors
 
 				// Initialize message source for this context.
-				initMessageSource();
+				initMessageSource();		// 国际化支持， 跳过
 
 				// Initialize event multicaster for this context.
 				initApplicationEventMulticaster();
