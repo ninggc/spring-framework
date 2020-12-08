@@ -352,19 +352,19 @@ public class CommonAnnotationBeanPostProcessor extends InitDestroyAnnotationBean
 			final List<InjectionMetadata.InjectedElement> currElements = new ArrayList<>();
 
 			ReflectionUtils.doWithLocalFields(targetClass, field -> {
-				if (webServiceRefClass != null && field.isAnnotationPresent(webServiceRefClass)) {
+				if (webServiceRefClass != null && field.isAnnotationPresent(webServiceRefClass)) {		// NINGGC_MARK 2020/12/8 @WebServiceRef
 					if (Modifier.isStatic(field.getModifiers())) {
 						throw new IllegalStateException("@WebServiceRef annotation is not supported on static fields");
 					}
 					currElements.add(new WebServiceRefElement(field, field, null));
 				}
-				else if (ejbRefClass != null && field.isAnnotationPresent(ejbRefClass)) {
+				else if (ejbRefClass != null && field.isAnnotationPresent(ejbRefClass)) {		// NINGGC_MARK 2020/12/8 @EJB
 					if (Modifier.isStatic(field.getModifiers())) {
 						throw new IllegalStateException("@EJB annotation is not supported on static fields");
 					}
 					currElements.add(new EjbRefElement(field, field, null));
 				}
-				else if (field.isAnnotationPresent(Resource.class)) {
+				else if (field.isAnnotationPresent(Resource.class)) {		// NINGGC_MARK 2020/12/8 @Resource
 					if (Modifier.isStatic(field.getModifiers())) {
 						throw new IllegalStateException("@Resource annotation is not supported on static fields");
 					}
@@ -400,7 +400,7 @@ public class CommonAnnotationBeanPostProcessor extends InitDestroyAnnotationBean
 						PropertyDescriptor pd = BeanUtils.findPropertyForMethod(bridgedMethod, clazz);
 						currElements.add(new EjbRefElement(method, bridgedMethod, pd));
 					}
-					else if (bridgedMethod.isAnnotationPresent(Resource.class)) {
+					else if (bridgedMethod.isAnnotationPresent(Resource.class)) {		// NINGGC_MARK 2020/12/8 @Resource for method
 						if (Modifier.isStatic(method.getModifiers())) {
 							throw new IllegalStateException("@Resource annotation is not supported on static methods");
 						}

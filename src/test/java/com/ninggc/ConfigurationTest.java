@@ -8,16 +8,21 @@ import org.springframework.core.annotation.AliasFor;
 @Configuration
 @Lazy(value = false)
 @Primary
-@DependsOn(value = "lifeCycle")
+// @DependsOn(value = "lifeCycle")
 @Role(BeanDefinition.ROLE_APPLICATION)
 @Description("configTest")
 public class ConfigurationTest {
-	@Autowired
-	LifeCycle lifeCycle;
+	// @Autowired
+	// LifeCycle lifeCycle;
 
 	@Bean(name = {"cti", "cti2"})
 	public ConfigurationTestInner configurationTestInner() {
 		return new ConfigurationTestInner();
+	}
+
+	@Bean(initMethod = "initMethod", destroyMethod = "desMethod")
+	public LifeCycle lifeCycle() {
+		return new LifeCycle();
 	}
 
 	public static class ConfigurationTestInner {

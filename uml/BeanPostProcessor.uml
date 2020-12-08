@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor</OriginalElement>
+  <nodes>
+    <node x="543.75" y="0.0">org.springframework.beans.factory.config.BeanPostProcessor</node>
+    <node x="346.00000000000006" y="162.0">org.springframework.beans.factory.config.SmartInstantiationAwareBeanPostProcessor</node>
+    <node x="127.0916666666667" y="243.0">org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor</node>
+    <node x="625.6833333333334" y="243.0">org.springframework.context.annotation.CommonAnnotationBeanPostProcessor</node>
+    <node x="837.375" y="81.0">org.springframework.beans.factory.config.DestructionAwareBeanPostProcessor</node>
+    <node x="0.0" y="162.0">org.springframework.beans.factory.support.MergedBeanDefinitionPostProcessor</node>
+    <node x="475.37500000000006" y="81.0">org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.beans.factory.config.SmartInstantiationAwareBeanPostProcessor" target="org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor">
+      <point x="0.0" y="-15.5" />
+      <point x="538.0" y="137.0" />
+      <point x="560.875" y="137.0" />
+      <point x="-85.5" y="15.5" />
+    </edge>
+    <edge source="org.springframework.beans.factory.support.MergedBeanDefinitionPostProcessor" target="org.springframework.beans.factory.config.BeanPostProcessor">
+      <point x="0.0" y="-15.5" />
+      <point x="163.00000000000006" y="56.0" />
+      <point x="575.5833333333335" y="56.0" />
+      <point x="-63.66666666666663" y="15.5" />
+    </edge>
+    <edge source="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" target="org.springframework.beans.factory.support.MergedBeanDefinitionPostProcessor">
+      <point x="-87.75" y="-15.5" />
+      <point x="214.8416666666667" y="223.0" />
+      <point x="81.5" y="223.0" />
+      <point x="-81.5" y="15.5" />
+    </edge>
+    <edge source="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" target="org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor">
+      <point x="0.0" y="-15.5" />
+      <point x="788.6833333333334" y="223.0" />
+      <point x="747.625" y="223.0" />
+      <point x="747.625" y="137.0" />
+      <point x="731.875" y="137.0" />
+      <point x="85.5" y="15.5" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor" target="org.springframework.beans.factory.config.BeanPostProcessor">
+      <point x="0.0" y="-15.5" />
+      <point x="646.375" y="56.0" />
+      <point x="639.25" y="56.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" target="org.springframework.beans.factory.support.MergedBeanDefinitionPostProcessor">
+      <point x="-108.66666666666674" y="-15.5" />
+      <point x="680.0166666666667" y="213.0" />
+      <point x="244.5" y="213.0" />
+      <point x="81.5" y="15.5" />
+    </edge>
+    <edge source="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" target="org.springframework.beans.factory.config.SmartInstantiationAwareBeanPostProcessor">
+      <point x="87.75" y="-15.5" />
+      <point x="390.3416666666667" y="223.0" />
+      <point x="538.0" y="223.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.beans.factory.config.DestructionAwareBeanPostProcessor" target="org.springframework.beans.factory.config.BeanPostProcessor">
+      <point x="0.0" y="-15.5" />
+      <point x="1000.375" y="56.0" />
+      <point x="702.9166666666667" y="56.0" />
+      <point x="63.66666666666663" y="15.5" />
+    </edge>
+    <edge source="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" target="org.springframework.beans.factory.config.DestructionAwareBeanPostProcessor">
+      <point x="108.66666666666663" y="-15.5" />
+      <point x="897.3499999999999" y="223.0" />
+      <point x="1000.375" y="223.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="582.0" y="137.0" />
+  <SelectedNodes>
+    <node>org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
