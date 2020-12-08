@@ -324,6 +324,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 							throw ex;
 						}
 					});
+					// 如果Bean是FactoryBean， 返回getObject的对象而不是它本身
 					bean = getObjectForBeanInstance(sharedInstance, name, beanName, mbd);
 				}
 
