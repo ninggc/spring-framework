@@ -202,7 +202,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 			enhancer.setCallbackTypes(types);
 
 			// Generate the proxy class and create a proxy instance.
-			return createProxyClassAndInstance(enhancer, callbacks);
+			return createProxyClassAndInstance(enhancer, callbacks);		// NINGGC_MARK 2020/12/9 创建代理类和实例过程
 		}
 		catch (CodeGenerationException | IllegalArgumentException ex) {
 			throw new AopConfigException("Could not generate CGLIB subclass of " + this.advised.getTargetClass() +
@@ -254,7 +254,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 	private void doValidateClass(Class<?> proxySuperClass, @Nullable ClassLoader proxyClassLoader, Set<Class<?>> ifcs) {
 		if (proxySuperClass != Object.class) {
 			Method[] methods = proxySuperClass.getDeclaredMethods();
-			for (Method method : methods) {
+			for (Method method : methods) {		// NINGGC_MARK 2020/12/9 CGLIB生成代理之前对类的验证
 				int mod = method.getModifiers();
 				if (!Modifier.isStatic(mod) && !Modifier.isPrivate(mod)) {
 					if (Modifier.isFinal(mod)) {

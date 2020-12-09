@@ -15,10 +15,10 @@ import javax.annotation.Resource;
 
 // @Component
 public class LifeCycle implements BeanPostProcessor, InitializingBean, DisposableBean, MergedBeanDefinitionPostProcessor {
-	@Autowired
+	@Autowired(required = false)
 	ConfigurationTest configurationTest;
-	@Resource
-	ConfigurationTest configurationTest1;
+	// @Resource()
+	// ConfigurationTest configurationTest1;
 
 	@PostConstruct
 	public void postC() {
@@ -33,6 +33,11 @@ public class LifeCycle implements BeanPostProcessor, InitializingBean, Disposabl
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		System.out.println("afterP");
+	}
+
+	public String doAop() {
+		System.out.println("doAop");
+		return "doAop";
 	}
 
 	@Override

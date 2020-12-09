@@ -226,7 +226,7 @@ public abstract class AopUtils {
 			return false;
 		}
 
-		MethodMatcher methodMatcher = pc.getMethodMatcher();
+		MethodMatcher methodMatcher = pc.getMethodMatcher();		// NINGGC_MARK 2020/12/9 匹配切点处的表达式
 		if (methodMatcher == MethodMatcher.TRUE) {
 			// No need to iterate the methods if we're matching any method anyway...
 			return true;
