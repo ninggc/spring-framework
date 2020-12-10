@@ -252,7 +252,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		}
 
 		enhanceConfigurationClasses(beanFactory);
-		beanFactory.addBeanPostProcessor(new ImportAwareBeanPostProcessor(beanFactory));
+		beanFactory.addBeanPostProcessor(new ImportAwareBeanPostProcessor(beanFactory));		// NINGGC_MARK 2020/12/10 ImportAwareBeanPostProcessor
 	}
 
 	/**
@@ -265,7 +265,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 
 		for (String beanName : candidateNames) {
 			BeanDefinition beanDef = registry.getBeanDefinition(beanName);
-			if (ConfigurationClassUtils.isFullConfigurationClass(beanDef) ||
+			if (ConfigurationClassUtils.isFullConfigurationClass(beanDef) ||		// NINGGC_MARK 2020/12/10 解析@Configuration
 					ConfigurationClassUtils.isLiteConfigurationClass(beanDef)) {
 				if (logger.isDebugEnabled()) {
 					logger.debug("Bean definition has already been processed as a configuration class: " + beanDef);
