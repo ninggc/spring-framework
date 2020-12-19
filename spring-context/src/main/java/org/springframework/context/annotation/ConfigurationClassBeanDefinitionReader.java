@@ -139,11 +139,11 @@ class ConfigurationClassBeanDefinitionReader {
 			registerBeanDefinitionForImportedConfigurationClass(configClass);
 		}
 		for (BeanMethod beanMethod : configClass.getBeanMethods()) {
-			loadBeanDefinitionsForBeanMethod(beanMethod);
+			loadBeanDefinitionsForBeanMethod(beanMethod);		// NINGGC_MARK 2020/12/18 扫描beanMethods声明的bean
 		}
 
-		loadBeanDefinitionsFromImportedResources(configClass.getImportedResources());
-		loadBeanDefinitionsFromRegistrars(configClass.getImportBeanDefinitionRegistrars());
+		loadBeanDefinitionsFromImportedResources(configClass.getImportedResources());		// NINGGC_MARK 2020/12/18 扫描@ImportResource配置的Bean
+		loadBeanDefinitionsFromRegistrars(configClass.getImportBeanDefinitionRegistrars());		// NINGGC_MARK 2020/12/19 扫描@Import配置的Bean
 	}
 
 	/**
@@ -186,7 +186,7 @@ class ConfigurationClassBeanDefinitionReader {
 			return;
 		}
 
-		AnnotationAttributes bean = AnnotationConfigUtils.attributesFor(metadata, Bean.class);
+		AnnotationAttributes bean = AnnotationConfigUtils.attributesFor(metadata, Bean.class);		// NINGGC_MARK 2020/12/18 解析@Bean注解的属性
 		Assert.state(bean != null, "No @Bean annotation attributes");
 
 		// Consider name and any aliases
@@ -211,12 +211,12 @@ class ConfigurationClassBeanDefinitionReader {
 		ConfigurationClassBeanDefinition beanDef = new ConfigurationClassBeanDefinition(configClass, metadata);
 		beanDef.setSource(this.sourceExtractor.extractSource(metadata, configClass.getResource()));
 
-		if (metadata.isStatic()) {
+		if (metadata.isStatic()) {		// 静态方法，保存className和methodName
 			// static @Bean method
 			beanDef.setBeanClassName(configClass.getMetadata().getClassName());
 			beanDef.setFactoryMethodName(methodName);
 		}
-		else {
+		else {		// 非静态方法， 保存工厂对象的beanName和methodName
 			// instance @Bean method
 			beanDef.setFactoryBeanName(configClass.getBeanName());
 			beanDef.setUniqueFactoryMethodName(methodName);

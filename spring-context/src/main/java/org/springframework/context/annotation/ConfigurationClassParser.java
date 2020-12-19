@@ -242,7 +242,7 @@ class ConfigurationClassParser {
 		// Recursively process the configuration class and its superclass hierarchy.
 		SourceClass sourceClass = asSourceClass(configClass);
 		do {
-			sourceClass = doProcessConfigurationClass(configClass, sourceClass);
+			sourceClass = doProcessConfigurationClass(configClass, sourceClass);		// 内部会将@Import、@ImportResource涉及到的bean记录下来
 		}
 		while (sourceClass != null);
 
@@ -300,11 +300,11 @@ class ConfigurationClassParser {
 		}
 
 		// Process any @Import annotations
-		processImports(configClass, sourceClass, getImports(sourceClass), true);
+		processImports(configClass, sourceClass, getImports(sourceClass), true);		// NINGGC_MARK 2020/12/19 处理@Import的内容
 
 		// Process any @ImportResource annotations
 		AnnotationAttributes importResource =
-				AnnotationConfigUtils.attributesFor(sourceClass.getMetadata(), ImportResource.class);
+				AnnotationConfigUtils.attributesFor(sourceClass.getMetadata(), ImportResource.class);		// NINGGC_MARK 2020/12/19 处理@ImportResource的内容
 		if (importResource != null) {
 			String[] resources = importResource.getStringArray("locations");
 			Class<? extends BeanDefinitionReader> readerClass = importResource.getClass("reader");
@@ -317,7 +317,7 @@ class ConfigurationClassParser {
 		// Process individual @Bean methods
 		Set<MethodMetadata> beanMethods = retrieveBeanMethodMetadata(sourceClass);
 		for (MethodMetadata methodMetadata : beanMethods) {
-			configClass.addBeanMethod(new BeanMethod(methodMetadata, configClass));
+			configClass.addBeanMethod(new BeanMethod(methodMetadata, configClass));		// 记录@Bean涉及到的方法
 		}
 
 		// Process default methods on interfaces
@@ -345,7 +345,7 @@ class ConfigurationClassParser {
 		Collection<SourceClass> memberClasses = sourceClass.getMemberClasses();
 		if (!memberClasses.isEmpty()) {
 			List<SourceClass> candidates = new ArrayList<>(memberClasses.size());
-			for (SourceClass memberClass : memberClasses) {
+			for (SourceClass memberClass : memberClasses) {		// 判断memberClass是不是配置Bean
 				if (ConfigurationClassUtils.isConfigurationCandidate(memberClass.getMetadata()) &&
 						!memberClass.getMetadata().getClassName().equals(configClass.getMetadata().getClassName())) {
 					candidates.add(memberClass);
@@ -359,7 +359,7 @@ class ConfigurationClassParser {
 				else {
 					this.importStack.push(configClass);
 					try {
-						processConfigurationClass(candidate.asConfigClass(configClass));
+						processConfigurationClass(candidate.asConfigClass(configClass));		// 递归处理内部的配置Bean
 					}
 					finally {
 						this.importStack.pop();
@@ -926,7 +926,7 @@ class ConfigurationClassParser {
 			MetadataReader sourceReader = (MetadataReader) sourceToProcess;
 			String[] memberClassNames = sourceReader.getClassMetadata().getMemberClassNames();
 			List<SourceClass> members = new ArrayList<>(memberClassNames.length);
-			for (String memberClassName : memberClassNames) {
+			for (String memberClassName : memberClassNames) {		// memberClass是静态的内部类或接口，不包括非静态项
 				try {
 					members.add(asSourceClass(memberClassName));
 				}

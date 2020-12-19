@@ -109,10 +109,10 @@ abstract class ConfigurationClassUtils {
 			}
 		}
 
-		if (isFullConfigurationCandidate(metadata)) {
+		if (isFullConfigurationCandidate(metadata)) {		// Full代表标注@Configurtation注解
 			beanDef.setAttribute(CONFIGURATION_CLASS_ATTRIBUTE, CONFIGURATION_CLASS_FULL);
 		}
-		else if (isLiteConfigurationCandidate(metadata)) {
+		else if (isLiteConfigurationCandidate(metadata)) {		// Lite代表标注@Import、@Component、@ImportResource、@ComponentScan
 			beanDef.setAttribute(CONFIGURATION_CLASS_ATTRIBUTE, CONFIGURATION_CLASS_LITE);
 		}
 		else {
@@ -147,7 +147,7 @@ abstract class ConfigurationClassUtils {
 	 * configuration class, including cross-method call interception
 	 */
 	public static boolean isFullConfigurationCandidate(AnnotationMetadata metadata) {
-		return metadata.isAnnotated(Configuration.class.getName());
+		return metadata.isAnnotated(Configuration.class.getName());		// NINGGC_MARK 2020/12/10 判断bean有没有@Configuration注解
 	}
 
 	/**
@@ -173,7 +173,7 @@ abstract class ConfigurationClassUtils {
 
 		// Finally, let's look for @Bean methods...
 		try {
-			return metadata.hasAnnotatedMethods(Bean.class.getName());
+			return metadata.hasAnnotatedMethods(Bean.class.getName());		// NINGGC_MARK 2020/12/10 判断是否有@Bean注解
 		}
 		catch (Throwable ex) {
 			if (logger.isDebugEnabled()) {

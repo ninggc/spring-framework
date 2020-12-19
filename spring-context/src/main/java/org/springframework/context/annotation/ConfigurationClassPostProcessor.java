@@ -313,8 +313,8 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		Set<BeanDefinitionHolder> candidates = new LinkedHashSet<>(configCandidates);
 		Set<ConfigurationClass> alreadyParsed = new HashSet<>(configCandidates.size());
 		do {
-			parser.parse(candidates);		// 开始解析候选的bean
-			parser.validate();
+			parser.parse(candidates);		// 开始解析候选的配置项Bean，将其中涉及到的bean都记录下来
+			parser.validate();		// // 限制class不能为final、beanMethods必须是可重写的
 
 			Set<ConfigurationClass> configClasses = new LinkedHashSet<>(parser.getConfigurationClasses());
 			configClasses.removeAll(alreadyParsed);
