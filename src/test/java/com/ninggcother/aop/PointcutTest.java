@@ -8,7 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Aspect
-@EnableAspectJAutoProxy(exposeProxy = true, proxyTargetClass = true)
+@EnableAspectJAutoProxy(exposeProxy = true, proxyTargetClass = false)
 public class PointcutTest {
 	// @Around("* com.ninggc.LifeCycle..*(()")
 	@Around(value = "execution(* com.ninggc.LifeCycle.doAop())", argNames = "proceedingJoinPoint")
@@ -21,8 +21,10 @@ public class PointcutTest {
 	}
 
 	public static void main(String[] args) {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(PointcutTest.class, LifeCycle.class);
-		LifeCycle lifeCycle = context.getBean(LifeCycle.class);
-		lifeCycle.doAop();
+		// AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(PointcutTest.class, LifeCycle.class);
+
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.registerBean(PointcutTest.class);
+		context.registerBean(AopServiceImpl.class);
 	}
 }

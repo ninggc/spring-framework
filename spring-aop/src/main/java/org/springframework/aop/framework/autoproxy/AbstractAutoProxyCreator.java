@@ -341,7 +341,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 		if (Boolean.FALSE.equals(this.advisedBeans.get(cacheKey))) {		// 标记过false的不需要处理
 			return bean;
 		}
-		if (isInfrastructureClass(bean.getClass()) || shouldSkip(bean.getClass(), beanName)) {		// 判断是否为基础类或指定类
+		if (isInfrastructureClass(bean.getClass()) || shouldSkip(bean.getClass(), beanName)) {		// 判断是否为Aspect基础设施类或是被指定为Advisor的类
 			this.advisedBeans.put(cacheKey, Boolean.FALSE);
 			return bean;
 		}

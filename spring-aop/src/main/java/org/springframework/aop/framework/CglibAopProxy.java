@@ -666,7 +666,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 			try {
 				if (this.advised.exposeProxy) {
 					// Make invocation available if necessary.
-					oldProxy = AopContext.setCurrentProxy(proxy);
+					oldProxy = AopContext.setCurrentProxy(proxy);		// 如果设置了exposeProxy就暴露代理到AopContext
 					setProxyContext = true;
 				}
 				// Get as late as possible to minimize the time we "own" the target, in case it comes from a pool...
@@ -685,7 +685,7 @@ class CglibAopProxy implements AopProxy, Serializable {
 					retVal = methodProxy.invoke(target, argsToUse);
 				}
 				else {
-					// We need to create a method invocation...
+					// We need to create a method invocation...		// 创建一个MethodInvocation调用， 并执行
 					retVal = new CglibMethodInvocation(proxy, target, method, args, targetClass, chain, methodProxy).proceed();
 				}
 				retVal = processReturnType(proxy, target, method, retVal);
