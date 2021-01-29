@@ -141,7 +141,7 @@ public abstract class MethodMatchers {
 		@Override
 		public boolean matches(Method method, @Nullable Class<?> targetClass, Object... args) {
 			return this.mm1.matches(method, targetClass, args) || this.mm2.matches(method, targetClass, args);
-		}
+		}		// mm1: AbstractAspectJAdvice$AdviceExcludingMethodMatcher	mm2: AspectJExpressionPointcut
 
 		@Override
 		public boolean equals(Object other) {

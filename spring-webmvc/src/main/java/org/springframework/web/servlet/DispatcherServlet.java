@@ -984,7 +984,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				}
 
 				if (!mappedHandler.applyPreHandle(processedRequest, response)) {
-					return;		// 如果是异步请求，直接返回
+					return;		// interceptor返回false，不再继续执行
 				}
 
 				// Actually invoke the handler.

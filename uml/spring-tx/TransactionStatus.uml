@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.transaction.TransactionStatus</OriginalElement>
+  <nodes>
+    <node x="82.75" y="81.0">org.springframework.transaction.TransactionStatus</node>
+    <node x="0.0" y="0.0">org.springframework.transaction.SavepointManager</node>
+    <node x="203.0" y="0.0">java.io.Flushable</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.transaction.TransactionStatus" target="org.springframework.transaction.SavepointManager">
+      <point x="-47.75" y="-15.5" />
+      <point x="130.5" y="56.0" />
+      <point x="91.5" y="56.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.transaction.TransactionStatus" target="java.io.Flushable">
+      <point x="47.75" y="-15.5" />
+      <point x="226.0" y="56.0" />
+      <point x="265.0" y="56.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="163.5" y="56.0" />
+  <SelectedNodes>
+    <node>org.springframework.transaction.TransactionStatus</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

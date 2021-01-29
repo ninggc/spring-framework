@@ -132,7 +132,7 @@ public abstract class AopConfigUtils {
 			return null;
 		}
 
-		RootBeanDefinition beanDefinition = new RootBeanDefinition(cls);
+		RootBeanDefinition beanDefinition = new RootBeanDefinition(cls);		// 注册AnnotationAwareAspectJAutoProxyCreator
 		beanDefinition.setSource(source);
 		beanDefinition.getPropertyValues().add("order", Ordered.HIGHEST_PRECEDENCE);
 		beanDefinition.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);

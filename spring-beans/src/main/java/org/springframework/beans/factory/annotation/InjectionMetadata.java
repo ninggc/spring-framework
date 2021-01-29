@@ -87,7 +87,7 @@ public class InjectionMetadata {
 				if (logger.isDebugEnabled()) {
 					logger.debug("Processing injected element of bean '" + beanName + "': " + element);
 				}
-				element.inject(target, beanName, pvs);
+				element.inject(target, beanName, pvs);		// 注入
 			}
 		}
 	}
@@ -177,7 +177,7 @@ public class InjectionMetadata {
 			if (this.isField) {
 				Field field = (Field) this.member;
 				ReflectionUtils.makeAccessible(field);
-				field.set(target, getResourceToInject(target, requestingBeanName));
+				field.set(target, getResourceToInject(target, requestingBeanName));		// getResource获取需要注入的bean，再通过反射注入到字段
 			}
 			else {
 				if (checkPropertySkipping(pvs)) {

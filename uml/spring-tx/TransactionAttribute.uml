@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.springframework.transaction.interceptor.TransactionAttribute</OriginalElement>
+  <nodes>
+    <node x="304.0" y="81.0">org.springframework.transaction.interceptor.TransactionAttribute</node>
+    <node x="113.23214285714283" y="162.0">org.springframework.transaction.interceptor.DefaultTransactionAttribute</node>
+    <node x="418.875" y="162.0">org.springframework.transaction.interceptor.DelegatingTransactionAttribute</node>
+    <node x="299.5" y="0.0">org.springframework.transaction.TransactionDefinition</node>
+    <node x="104.73214285714283" y="243.0">org.springframework.transaction.interceptor.RuleBasedTransactionAttribute</node>
+    <node x="0.0" y="81.0">org.springframework.transaction.support.DefaultTransactionDefinition</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.springframework.transaction.interceptor.DefaultTransactionAttribute" target="org.springframework.transaction.interceptor.TransactionAttribute">
+      <point x="68.75" y="-15.5" />
+      <point x="319.48214285714283" y="137.0" />
+      <point x="358.0" y="137.0" />
+      <point x="-54.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.transaction.support.DefaultTransactionDefinition" target="org.springframework.transaction.TransactionDefinition">
+      <point x="0.0" y="-15.5" />
+      <point x="142.0" y="56.0" />
+      <point x="337.0" y="56.0" />
+      <point x="-75.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.transaction.interceptor.TransactionAttribute" target="org.springframework.transaction.TransactionDefinition">
+      <point x="0.0" y="-15.5" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.transaction.interceptor.DelegatingTransactionAttribute" target="org.springframework.transaction.TransactionDefinition">
+      <point x="75.0" y="-15.5" />
+      <point x="643.875" y="137.0" />
+      <point x="601.8571428571429" y="137.0" />
+      <point x="601.8571428571429" y="56.0" />
+      <point x="487.0" y="56.0" />
+      <point x="75.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.transaction.interceptor.DelegatingTransactionAttribute" target="org.springframework.transaction.interceptor.TransactionAttribute">
+      <point x="-75.0" y="-15.5" />
+      <point x="493.875" y="137.0" />
+      <point x="466.0" y="137.0" />
+      <point x="54.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.transaction.interceptor.DefaultTransactionAttribute" target="org.springframework.transaction.support.DefaultTransactionDefinition">
+      <point x="-68.75" y="-15.5" />
+      <point x="181.98214285714283" y="137.0" />
+      <point x="142.0" y="137.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="org.springframework.transaction.interceptor.RuleBasedTransactionAttribute" target="org.springframework.transaction.interceptor.DefaultTransactionAttribute">
+      <point x="0.0" y="-15.5" />
+      <point x="0.0" y="15.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="296.0" y="137.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

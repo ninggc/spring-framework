@@ -587,10 +587,10 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		if (earlySingletonExposure) {
 			Object earlySingletonReference = getSingleton(beanName, false);
 			if (earlySingletonReference != null) {
-				if (exposedObject == bean) {		// 如果initializeBean没有重写bean，就使用earlySingletonReference， 否则使用重写的bean
+				if (exposedObject == bean) {		// 如果initializeBean方法没有对exposedObject进行包装，就使用已经初始化好的earlySingletonReference
 					exposedObject = earlySingletonReference;
 				}
-				else if (!this.allowRawInjectionDespiteWrapping && hasDependentBean(beanName)) {
+				else if (!this.allowRawInjectionDespiteWrapping && hasDependentBean(beanName)) {		// initializeBean重新包装了bean，检查依赖项
 					String[] dependentBeans = getDependentBeans(beanName);
 					Set<String> actualDependentBeans = new LinkedHashSet<>(dependentBeans.length);
 					for (String dependentBean : dependentBeans) {
