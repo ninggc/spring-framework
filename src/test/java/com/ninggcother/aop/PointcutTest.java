@@ -6,10 +6,12 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Aspect
 @EnableAspectJAutoProxy(exposeProxy = true, proxyTargetClass = false)
+@ComponentScan("com.ninggcother.aop")
 public class PointcutTest {
 
 	// @Around("* com.ninggc.LifeCycle..*(()")
@@ -29,10 +31,10 @@ public class PointcutTest {
 		// AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(PointcutTest.class, LifeCycle.class);
 		try {
 
-			AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-			context.registerBean(PointcutTest.class);
-			context.registerBean(AopServiceImpl.class);
-			context.registerBean(AopServiceImpl2.class);
+			AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(PointcutTest.class);
+			// context.registerBean(PointcutTest.class);
+			// context.registerBean(AopServiceImpl.class);
+			// context.registerBean(AopServiceImpl2.class);
 
 			context.refresh();
 
